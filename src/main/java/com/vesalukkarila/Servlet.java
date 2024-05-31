@@ -52,6 +52,8 @@ public class Servlet extends HttpServlet {
             resp.setContentType("application/json; charset=UTF-8");
             String json = objectMapper.writeValueAsString(invoice);
             resp.getWriter().print(json);
+        }else{
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 

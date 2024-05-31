@@ -1,11 +1,15 @@
 package com.vesalukkarila;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Invoice {
 
     private String id;
+    @JsonProperty("user_id")
     private String userId;
+    @JsonProperty("pdf_url")
     private String pdfUrl;
     private Integer amount;
 
