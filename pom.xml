@@ -15,6 +15,13 @@
     </properties>
 
     <dependencies>
+        <!-- tomcat, embedded servlet container -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>11.0.0-M20</version>
+        </dependency>
+
     </dependencies>
 
     <build>
