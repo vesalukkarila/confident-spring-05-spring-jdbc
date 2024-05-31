@@ -1,6 +1,8 @@
-package com.vesalukkarila;
+package com.vesalukkarila.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vesalukkarila.model.Invoice;
+import com.vesalukkarila.service.InvoiceService;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -37,7 +39,8 @@ public class Servlet extends HttpServlet {
         }
         else if (req.getRequestURI().equalsIgnoreCase("/invoices")){
             resp.setContentType("application/json; charset=UTF-8");
-            resp.getWriter().print("[]");
+            String json = objectMapper.writeValueAsString(invoiceService.getInvoices());
+            resp.getWriter().print(json);
         }
     }
 

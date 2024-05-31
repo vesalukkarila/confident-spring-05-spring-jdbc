@@ -1,4 +1,4 @@
-package com.vesalukkarila;
+package com.vesalukkarila.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
