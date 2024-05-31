@@ -1,5 +1,7 @@
 package com.vesalukkarila;
 
+import java.util.UUID;
+
 public class Invoice {
 
     private String id;
@@ -8,6 +10,7 @@ public class Invoice {
     private Integer amount;
 
     public Invoice(String userId, Integer amount, String pdfUrl) {
+        this.id = UUID.randomUUID().toString();
         this.userId = userId;
         this.pdfUrl = pdfUrl;
         this.amount = amount;
