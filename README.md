@@ -2,11 +2,11 @@
 Introducing Spring Core features to simple backend
 
 ## Learning goals
-Maven dependencies 
-Basics of Spring Core features:
-@Configuration, @Beans, @Scopes, @Component, @ComponentScan
-@Autowired(constructor&field&setter injections), @Bean lifecycles
-Resources, Properties and Profiles.
+Maven dependencies  
+Basics of Spring Core features:  
+@Configuration, @Beans, @Scopes, @Component, @ComponentScan  
+@Autowired(constructor&field&setter injections), @Bean lifecycles  
+Resources, Properties and Profiles.  
 
 ## Sources
 Based largely on learnings from Marco Behler's course "The confident Spring professional" https://www.marcobehler.com/ which I bought for myself in order to understand the fundamentals of Spring. 
