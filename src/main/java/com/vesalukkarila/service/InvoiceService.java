@@ -9,18 +9,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class InvoiceService {
 
+    private final UserService userService;
     private List<Invoice> invoices;
 
-    public InvoiceService() {
+    public InvoiceService(UserService userService) {
+        this.userService = userService;
         this.invoices = new CopyOnWriteArrayList<>();
     }
 
     public Invoice create(String userId, Integer amount){
-        User user = Application.userService.findById(userId);
+        User user = userService.findById(userId);
         if (user == null){
             throw new IllegalStateException();
         }
-        
+
         Invoice invoice = new Invoice(userId, amount, "http://www.urlToPdf");
         invoices.add(invoice);
         return invoice;
