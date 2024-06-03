@@ -24,6 +24,7 @@ public class Servlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+        context.registerShutdownHook();
         this.objectMapper = context.getBean(ObjectMapper.class);
         this.userService = context.getBean(UserService.class);
         this.invoiceService = context.getBean(InvoiceService.class);

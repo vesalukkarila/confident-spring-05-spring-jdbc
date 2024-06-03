@@ -2,6 +2,8 @@ package com.vesalukkarila.service;
 
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.model.User;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +27,15 @@ public class InvoiceService {
         this.invoices = new CopyOnWriteArrayList<>();
     }
 
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("Printout from invoicesService's postconstruct");
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        System.out.println("Printout from invoiceService's predestroy");
+    }
     public Invoice create(String userId, Integer amount){
         User user = userService.findById(userId);
         if (user == null){
