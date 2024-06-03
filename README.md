@@ -1,5 +1,5 @@
 # simple-webapp-IoC-basics
-Introducing Spring Core features to simple backend, building on top of simple-webapp repository
+Introducing Spring Core features, building on top of simple-webapp repository
 
 ## Learning goals
 Maven dependencies  
