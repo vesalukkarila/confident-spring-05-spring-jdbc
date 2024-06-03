@@ -45,7 +45,7 @@ public class InvoiceService {
             throw new IllegalStateException();
         }
 
-        Invoice invoice = new Invoice(userId, amount, "http://www.urlToPdf");
+        Invoice invoice = new Invoice(userId, amount, cdnUrl + "/images/sample.pdf");
         invoices.add(invoice);
         return invoice;
     }
