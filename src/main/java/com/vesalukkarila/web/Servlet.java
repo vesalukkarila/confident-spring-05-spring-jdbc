@@ -1,26 +1,14 @@
 package com.vesalukkarila.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vesalukkarila.context.Application;
 import com.vesalukkarila.model.Invoice;
-import com.vesalukkarila.service.InvoiceService;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 public class Servlet extends HttpServlet {
-
-    private InvoiceService invoiceService;
-    private ObjectMapper objectMapper;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        this.invoiceService = new InvoiceService();
-        this.objectMapper = new ObjectMapper();
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -39,7 +27,7 @@ public class Servlet extends HttpServlet {
         }
         else if (req.getRequestURI().equalsIgnoreCase("/invoices")){
             resp.setContentType("application/json; charset=UTF-8");
-            String json = objectMapper.writeValueAsString(invoiceService.getInvoices());
+            String json = Application.objectMapper.writeValueAsString(Application.invoiceService.getInvoices());
             resp.getWriter().print(json);
         }
     }
@@ -50,10 +38,10 @@ public class Servlet extends HttpServlet {
             String userId = req.getParameter("user_id");
             Integer amount = Integer.valueOf(req.getParameter("amount"));
 
-            Invoice invoice = invoiceService.create(userId, amount);
+            Invoice invoice = Application.invoiceService.create(userId, amount);
 
             resp.setContentType("application/json; charset=UTF-8");
-            String json = objectMapper.writeValueAsString(invoice);
+            String json = Application.objectMapper.writeValueAsString(invoice);
             resp.getWriter().print(json);
         }else{
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
