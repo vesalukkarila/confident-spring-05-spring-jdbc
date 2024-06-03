@@ -1,12 +1,13 @@
 package com.vesalukkarila.service;
 
-import com.vesalukkarila.context.Application;
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Component
 public class InvoiceService {
 
     private final UserService userService;

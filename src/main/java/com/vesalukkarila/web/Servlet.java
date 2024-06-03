@@ -1,9 +1,10 @@
 package com.vesalukkarila.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vesalukkarila.context.Application;
 import com.vesalukkarila.context.ApplicationConfiguration;
 import com.vesalukkarila.model.Invoice;
+import com.vesalukkarila.service.InvoiceService;
+import com.vesalukkarila.service.UserService;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,12 +17,16 @@ import java.io.IOException;
 public class Servlet extends HttpServlet {
 
     private ObjectMapper objectMapper;
+    private UserService userService;
+    private InvoiceService invoiceService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         this.objectMapper = context.getBean(ObjectMapper.class);
+        this.userService = context.getBean(UserService.class);
+        this.invoiceService = context.getBean(InvoiceService.class);
 
     }
 
@@ -42,7 +47,7 @@ public class Servlet extends HttpServlet {
         }
         else if (req.getRequestURI().equalsIgnoreCase("/invoices")){
             resp.setContentType("application/json; charset=UTF-8");
-            String json = objectMapper.writeValueAsString(Application.invoiceService.getInvoices());
+            String json = objectMapper.writeValueAsString(invoiceService.getInvoices());
             resp.getWriter().print(json);
         }
     }
@@ -53,7 +58,7 @@ public class Servlet extends HttpServlet {
             String userId = req.getParameter("user_id");
             Integer amount = Integer.valueOf(req.getParameter("amount"));
 
-            Invoice invoice = Application.invoiceService.create(userId, amount);
+            Invoice invoice = invoiceService.create(userId, amount);
 
             resp.setContentType("application/json; charset=UTF-8");
             String json = objectMapper.writeValueAsString(invoice);
