@@ -5,6 +5,7 @@ import com.vesalukkarila.model.User;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,13 +18,15 @@ public class InvoiceService {
     @Autowired
     private ExampleServiceForFieldAndSetterInjection exampleService;
     private final UserService userService;
+    private final String cdnUrl;
     private List<Invoice> invoices;
 
     /*Recommended for mandatory dependencies.
     note to self: @Autowired was necessary in constructor injection before Spring 4.3,
     Done implicitly nowadays (though can still be used for clarity)*/
-    public InvoiceService(UserService userService) {
+    public InvoiceService(UserService userService, @Value("${cdn.url}") String cdnUrl) {
         this.userService = userService;
+        this.cdnUrl = cdnUrl;
         this.invoices = new CopyOnWriteArrayList<>();
     }
 
