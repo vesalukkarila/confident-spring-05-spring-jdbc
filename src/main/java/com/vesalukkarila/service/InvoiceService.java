@@ -13,7 +13,7 @@ public class InvoiceService {
 
     //drawbacks: hides dependency this class need, hard to instantiate outside of spring context
     @Autowired
-    private ExampleServiceForFieldInjection exampleServiceForFieldInjection;
+    private ExampleServiceForFieldAndSetterInjection exampleService;
     private final UserService userService;
     private List<Invoice> invoices;
 
@@ -42,7 +42,8 @@ public class InvoiceService {
 
     /*recommended for optional dependencies*/
     @Autowired
-    public void setExampleServiceForFieldInjection(ExampleServiceForFieldInjection exampleService) {
-        this.exampleServiceForFieldInjection = exampleService;
+    public void setExampleServiceForFieldInjection(
+            ExampleServiceForFieldAndSetterInjection exampleService) {
+        this.exampleService = exampleService;
     }
 }
