@@ -3,13 +3,11 @@ package com.vesalukkarila.context;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vesalukkarila.ApplicationLauncher;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)//by default scans from this package
+@PropertySource("classpath:/application.properties")
 public class ApplicationConfiguration {
 
     //singleton already by default, for demonstration purposes
