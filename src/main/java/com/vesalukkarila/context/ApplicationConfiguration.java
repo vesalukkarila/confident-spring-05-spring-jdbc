@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
-@ComponentScan(basePackageClasses = ApplicationLauncher.class)
+@ComponentScan(basePackageClasses = ApplicationLauncher.class)//by default scans from this package
 public class ApplicationConfiguration {
 
     //singleton already by default, for demonstration purposes
