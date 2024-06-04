@@ -14,16 +14,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Component
 public class InvoiceService {
 
-    //drawbacks: hides dependency this class need, hard to instantiate outside of spring context
-    @Autowired
-    private ExampleServiceForFieldAndSetterInjection exampleService;
     private final UserService userService;
     private final String cdnUrl;
     private List<Invoice> invoices;
 
-    /*Recommended for mandatory dependencies.
-    note to self: @Autowired was necessary in constructor injection before Spring 4.3,
-    Done implicitly nowadays (though can still be used for clarity)*/
     public InvoiceService(UserService userService, @Value("${cdn.url}") String cdnUrl) {
         this.userService = userService;
         this.cdnUrl = cdnUrl;
@@ -54,10 +48,4 @@ public class InvoiceService {
         return invoices;
     }
 
-    /*recommended for optional dependencies*/
-    @Autowired
-    public void setExampleServiceForFieldInjection(
-            ExampleServiceForFieldAndSetterInjection exampleService) {
-        this.exampleService = exampleService;
-    }
 }

@@ -2,9 +2,9 @@ package com.vesalukkarila.web;
 
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.service.InvoiceService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,9 +24,16 @@ public class InvoiceController {
     }
 
     /*@EnableWebMvc in config enables Jackson to work behind the scenes
-    * and converting Java object <-> JSON*/
+    * converting Java object <-> JSON*/
     @GetMapping("/invoices")
     public List<Invoice> getInvoices() {
         return invoiceService.getInvoices();
+    }
+
+    /*Extracting parameters appended to URL*/
+    @PostMapping("/invoices")
+    public Invoice createInvoice(@RequestParam("user_id") String userId,
+                                 @RequestParam("amount") Integer amount) {
+        return invoiceService.create(userId, amount);
     }
 }
