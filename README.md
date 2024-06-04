@@ -1,12 +1,8 @@
-# simple-webapp-IoC-basics
-Introducing Spring Core features, building on top of simple-webapp repository
+# webmvc-restservices
+Introducing Spring Web MVC features
 
 ## Learning goals
-Maven dependencies  
-Basics of Spring Core features:  
-@Configuration, @Beans, @Scopes, @Component, @ComponentScan  
-@Autowired(constructor&field&setter injections), @Bean lifecycles  
-Resources, Properties and Profiles.  
+  
 
 ## Sources
 Based largely on learnings from Marco Behler's course "The confident Spring professional" https://www.marcobehler.com/ which I bought for myself in order to understand the fundamentals of Spring. 
@@ -14,10 +10,12 @@ After going through the course twice, going at it for the third time. Minimal co
 
 ## Use
 Endpoints for local use:
-- GET "/" returns html greeting
-- GET "/invoices" returns all posted invoices as JSON
-- POST "/invoices?user_id=jeff&amount=40" creates an invoice and returns it as JSON
-- POST "/*" returns 404
+- GET "/" 
+- GET "/invoices" 
+- POST "/invoices?user_id=jeff&amount=40" 
+- POST "/invoices/jeff/40"
+- POST "/invoicesbody" + user_id & amount in request body
+- Content negotiation: Request header's Accept and Content-Type can both be either "application/json" or "application/xml"
 
 ## Key takeaways
 - ApplicationContext is central interface for Spring IoC
