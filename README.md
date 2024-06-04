@@ -16,7 +16,7 @@ After going through the course twice, going at it for the third time. Minimal co
 Endpoints for local use:
 - GET "/" returns html greeting
 - GET "/invoices" returns all posted invoices as JSON
-- POST "/invoices?name=jeff&amount=40" creates an invoice and returns it as JSON
+- POST "/invoices?user_id=jeff&amount=40" creates an invoice and returns it as JSON
 - POST "/*" returns 404
 
 ## Key takeaways
