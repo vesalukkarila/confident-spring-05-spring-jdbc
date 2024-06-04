@@ -3,6 +3,7 @@ package com.vesalukkarila.web;
 import com.vesalukkarila.dto.InvoiceDto;
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.service.InvoiceService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class InvoiceController {
 
     /*Incoming data in response body*/
     @PostMapping("/invoicesbody")
-    public Invoice createInvoiceFromRequestBody(@RequestBody InvoiceDto invoiceDto) {
+    public Invoice createInvoiceFromRequestBody(@RequestBody @Valid InvoiceDto invoiceDto) {
         return invoiceService.create(invoiceDto.getUserId(), invoiceDto.getAmount());
     }
 }

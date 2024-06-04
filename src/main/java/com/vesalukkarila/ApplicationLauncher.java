@@ -1,7 +1,6 @@
 package com.vesalukkarila;
 
 import com.vesalukkarila.context.ApplicationConfiguration;
-import com.vesalukkarila.web.Servlet;
 import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
