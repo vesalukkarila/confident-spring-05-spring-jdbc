@@ -2,10 +2,7 @@ package com.vesalukkarila.web;
 
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.service.InvoiceService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,8 +29,15 @@ public class InvoiceController {
 
     /*Extracting parameters appended to URL*/
     @PostMapping("/invoices")
-    public Invoice createInvoice(@RequestParam("user_id") String userId,
+    public Invoice createInvoiceFromParameters(@RequestParam("user_id") String userId,
                                  @RequestParam("amount") Integer amount) {
+        return invoiceService.create(userId, amount);
+    }
+
+    /*Extracting path variables*/
+    @PostMapping("/invoices/{userId}/{amount}")
+    public Invoice createInvoiceFromPathVariables(@PathVariable("userId") String userId,
+                                                   @PathVariable("amount") Integer amount) {
         return invoiceService.create(userId, amount);
     }
 }
