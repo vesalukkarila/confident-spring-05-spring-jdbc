@@ -35,15 +35,17 @@ public class InvoiceController {
 
     /*Extracting parameters appended to URL*/
     @PostMapping("/invoices")
-    public Invoice createInvoiceFromParameters(@RequestParam("user_id") @NotBlank String userId,
-                                 @RequestParam("amount") @Range(min = 10, max = 40) Integer amount) {
+    public Invoice createInvoiceFromParameters(
+            @RequestParam("user_id") @NotBlank String userId,
+            @RequestParam("amount") @Range(min = 10, max = 40) Integer amount) {
         return invoiceService.create(userId, amount);
     }
 
     /*Extracting path variables*/
     @PostMapping("/invoices/{userId}/{amount}")
-    public Invoice createInvoiceFromPathVariables(@PathVariable("userId") String userId,
-                                                   @PathVariable("amount") Integer amount) {
+    public Invoice createInvoiceFromPathVariables(
+            @PathVariable("userId") @NotBlank String userId,
+            @PathVariable("amount") @Range(min = 10, max = 40) Integer amount) {
         return invoiceService.create(userId, amount);
     }
 
