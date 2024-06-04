@@ -4,11 +4,15 @@ import com.vesalukkarila.dto.InvoiceDto;
 import com.vesalukkarila.model.Invoice;
 import com.vesalukkarila.service.InvoiceService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Validated
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
@@ -31,8 +35,8 @@ public class InvoiceController {
 
     /*Extracting parameters appended to URL*/
     @PostMapping("/invoices")
-    public Invoice createInvoiceFromParameters(@RequestParam("user_id") String userId,
-                                 @RequestParam("amount") Integer amount) {
+    public Invoice createInvoiceFromParameters(@RequestParam("user_id") @NotBlank String userId,
+                                 @RequestParam("amount") @Range(min = 10, max = 40) Integer amount) {
         return invoiceService.create(userId, amount);
     }
 
