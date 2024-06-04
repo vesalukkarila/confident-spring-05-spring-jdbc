@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 //applies to both @Controller and @RestController and writes JSON/XML to response body
 @RestControllerAdvice
-public class ControllerExceptionHandler {
+public class GlobalExceptionHandler {
 
     // fires when @Valid validation against DTO fails
     @ResponseStatus(HttpStatus.BAD_REQUEST)
