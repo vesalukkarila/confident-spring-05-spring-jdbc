@@ -5,7 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<!--action:url form is submitted against, object:maps form fields onto Java object(backing bean)-->
+<div th:if="${invalidCredentials}" style="background-color: red;">
+    Sorry, <span th:text="${loginForm.username}">[username]</span>, that doesn't look like you!
+</div>
+
 <form th:action="@{/login}" th:object="${loginForm}" method="post">
 
     <p>Username: <input type="text" th:field="*{username}"/></p>
