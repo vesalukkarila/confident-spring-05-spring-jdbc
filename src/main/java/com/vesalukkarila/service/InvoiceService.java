@@ -33,6 +33,7 @@ public class InvoiceService {
     public void shutdown() {
         System.out.println("Printout from invoiceService's predestroy");
     }
+
     public Invoice create(String userId, Integer amount){
         User user = userService.findById(userId);
         if (user == null){

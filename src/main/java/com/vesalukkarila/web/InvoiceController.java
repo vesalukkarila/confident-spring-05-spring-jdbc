@@ -21,13 +21,6 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "Hello from webmvc controller";
-    }
-
-    /*@EnableWebMvc in config enables Jackson to work behind the scenes
-    * converting Java object <-> JSON*/
     @GetMapping("/invoices")
     public List<Invoice> getInvoices() {
         return invoiceService.getInvoices();
