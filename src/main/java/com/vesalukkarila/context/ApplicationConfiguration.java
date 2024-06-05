@@ -38,6 +38,7 @@ public class ApplicationConfiguration {
         return viewResolver;
     }
 
+    //Thymeleaf specific configuration bean, can configure advanced Thymeleaf settings
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -45,6 +46,7 @@ public class ApplicationConfiguration {
         return templateEngine;
     }
 
+    //TemplateResolver actually finds Thymeleaf templates
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
