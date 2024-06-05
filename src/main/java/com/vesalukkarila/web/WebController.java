@@ -1,5 +1,6 @@
 package com.vesalukkarila.web;
 
+import com.vesalukkarila.web.forms.LoginForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,5 +18,12 @@ public class WebController {
         model.addAttribute("username", userName);
         model.addAttribute("currentDate", LocalDateTime.now());
         return "index.html";
+    }
+
+    //this serves the login.html and allready provides backing bean for incoming data from form
+    @GetMapping("/login")
+    public  String login(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
+        return "login.html";
     }
 }
