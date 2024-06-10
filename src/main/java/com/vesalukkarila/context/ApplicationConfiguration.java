@@ -57,11 +57,12 @@ public class ApplicationConfiguration {
 
     /*H2’s specific dataSource
     URL; H2 specific and means: Open (and create if it does not yet exist) a database in a file called
+    INIT parameter runs given script when ever connection to H2 database is established
     h2database.mv.db, in your home directory (~)*/
     @Bean
     public DataSource dataSource() {
         JdbcDataSource dataSource = new JdbcDataSource();
-        dataSource.setURL("jdbc:h2:~/h2Database");
+        dataSource.setURL("jdbc:h2:~/h2Database;INIT=RUNSCRIPT FROM 'classpath:schema.sql'");
         dataSource.setUser("sa");   // using sa/sa is somewhat a convention in H2
         dataSource.setPassword("sa");
         return dataSource;
