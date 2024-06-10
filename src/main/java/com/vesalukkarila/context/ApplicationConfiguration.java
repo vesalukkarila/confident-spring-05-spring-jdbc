@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
 @PropertySource("classpath:/application.properties")
-@PropertySource(value = "classpath:/application-${spring.profiles.active{}.properties",
+@PropertySource(value = "classpath:/application-${spring.profiles.active}.properties",
                         ignoreResourceNotFound = true)
 @EnableWebMvc
 public class ApplicationConfiguration {
