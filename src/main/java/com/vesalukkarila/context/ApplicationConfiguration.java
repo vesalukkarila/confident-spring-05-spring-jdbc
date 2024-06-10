@@ -5,6 +5,7 @@ import com.vesalukkarila.ApplicationLauncher;
 import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring6.ISpringTemplateEngine;
@@ -66,5 +67,11 @@ public class ApplicationConfiguration {
         dataSource.setUser("sa");   // using sa/sa is somewhat a convention in H2
         dataSource.setPassword("sa");
         return dataSource;
+    }
+
+    /*tiny wrapper around Java's plain JDBC, allows to execute SQL statements*/
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 }
