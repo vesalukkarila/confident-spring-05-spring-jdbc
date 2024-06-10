@@ -2,6 +2,7 @@ package com.vesalukkarila.context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vesalukkarila.ApplicationLauncher;
+import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
@@ -11,6 +12,8 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
@@ -28,7 +31,6 @@ public class ApplicationConfiguration {
         return new MethodValidationPostProcessor();
     }
 
-    /*Tell Spring it should try to find Thymeleaf templates*/
     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
@@ -38,7 +40,6 @@ public class ApplicationConfiguration {
         return viewResolver;
     }
 
-    //Thymeleaf specific configuration bean, can configure advanced Thymeleaf settings
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -46,12 +47,23 @@ public class ApplicationConfiguration {
         return templateEngine;
     }
 
-    //TemplateResolver actually finds Thymeleaf templates
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setCacheable(false);
         return templateResolver;
+    }
+
+    /*H2’s specific dataSource
+    URL; H2 specific and means: Open (and create if it does not yet exist) a database in a file called
+    h2database.mv.db, in your home directory (~)*/
+    @Bean
+    public DataSource dataSource() {
+        JdbcDataSource dataSource = new JdbcDataSource();
+        dataSource.setURL("jdbc:h2:~/h2Database");
+        dataSource.setUser("sa");   // using sa/sa is somewhat a convention in H2
+        dataSource.setPassword("sa");
+        return dataSource;
     }
 }
