@@ -6,6 +6,9 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring6.ISpringTemplateEngine;
@@ -22,6 +25,7 @@ import javax.sql.DataSource;
 @PropertySource(value = "classpath:/application-${spring.profiles.active}.properties",
                         ignoreResourceNotFound = true)
 @EnableWebMvc
+@EnableTransactionManagement//allows to use @Transactional
 public class ApplicationConfiguration {
 
     @Bean(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -73,5 +77,11 @@ public class ApplicationConfiguration {
     @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
+    }
+
+    /* responsible for actually opening up and committing transactions on database connections*/
+    @Bean
+    public TransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 }
