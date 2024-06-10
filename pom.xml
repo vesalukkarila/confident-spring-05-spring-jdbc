@@ -68,6 +68,19 @@
             <version>3.1.1.RELEASE</version>
         </dependency>
 
+        <!-- in memory h2 database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>6.1.8</version>
+        </dependency>
 
 
     </dependencies>
