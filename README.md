@@ -27,4 +27,4 @@ For Thymeleaf and Spring to work together register following three @Beans:
 
 Through Model (essentially a map-container) you provide variables to the template.  
 Spring injects Model into every @Controller method if specified as parameter.  
-Thymeleaf tags have lots of code-like functionalities.  
+Thymeleaf tags have lots of code-like functionalities.    
